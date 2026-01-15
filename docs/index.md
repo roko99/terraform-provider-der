@@ -1,12 +1,9 @@
 ---
-page_title: "PKCS12 Provider"
+page_title: "DER Provider"
 description: |-
-  The PKCS12 provider allows to create PKCS12 archives for provided PEM files
+  The DER provider allows conversion of PEM-encoded certificates and private keys to DER format
 ---
 
-# PKCS12 Provider
+# DER Provider
 
-The PKCS12 provider allows to create PKCS12 archives for provided PEM files
-
-This provider requires no configuration. For information on the resources
-it provides, see the navigation bar.
+The DER provider enables conversion of PEM-encoded certificates and private keys to DER (Distinguished Encoding Rules) format.

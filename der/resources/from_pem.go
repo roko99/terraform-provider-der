@@ -51,17 +51,6 @@ func ResourceFromPem() *schema.Resource {
 				Sensitive:   true,
 				Description: "Base64-encoded DER private key",
 			},
-			"cert_der_binary": {
-				Type:        schema.TypeString,
-				Computed:    true,
-				Description: "Raw DER certificate data",
-			},
-			"key_der_binary": {
-				Type:        schema.TypeString,
-				Computed:    true,
-				Sensitive:   true,
-				Description: "Raw DER private key data",
-			},
 		},
 	}
 }
@@ -94,12 +83,6 @@ func resourceFromPemCreate(ctx context.Context, d *schema.ResourceData, _ interf
 		return diag.FromErr(err)
 	}
 	if err := d.Set("key_der", base64.StdEncoding.EncodeToString(keyDER)); err != nil {
-		return diag.FromErr(err)
-	}
-	if err := d.Set("cert_der_binary", base64.StdEncoding.EncodeToString(certDER)); err != nil {
-		return diag.FromErr(err)
-	}
-	if err := d.Set("key_der_binary", base64.StdEncoding.EncodeToString(keyDER)); err != nil {
 		return diag.FromErr(err)
 	}
 

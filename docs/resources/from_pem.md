@@ -11,6 +11,28 @@ Converts PEM-encoded certificates and private keys to DER (Distinguished Encodin
 ## Example Usage
 
 ```hcl
+resource "tls_private_key" "example" {
+  algorithm = "RSA"
+}
+
+resource "tls_self_signed_cert" "example" {
+  private_key_pem       = tls_private_key.my_private_key.private_key_pem
+  validity_period_hours = 58440
+  early_renewal_hours   = 5844
+  allowed_uses = [
+    "key_encipherment",
+    "digital_signature",
+    "server_auth",
+  ]
+  dns_names          = ["myserver1.local", "myserver2.local"]
+  is_ca_certificate  = true
+  set_subject_key_id = true
+
+  subject {
+    common_name = "myserver.local"
+  }
+}
+
 resource "der_from_pem" "example" {
   cert_pem            = tls_self_signed_cert.example.cert_pem
   private_key_pem     = tls_private_key.example.private_key_pem

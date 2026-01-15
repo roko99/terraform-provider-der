@@ -54,6 +54,6 @@ resource "local_file" "key_der" {
 }
 
 output "der_from_pem" {
-  value     = nonsensitive(der_from_pem.my_der.key_der)
-  sensitive = false
+  value     = der_from_pem.my_der.key_der
+  sensitive = true
 }
